@@ -1,0 +1,53 @@
+86. Partition List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        vector<int> Helper;
+        ListNode* temp=head;
+        while(temp!=NULL)
+        {
+            (Helper.push_back(temp->val));
+            
+            temp=temp->next;
+        }
+        ListNode* temp1=head;
+        int nose=0;
+        for(int i=0;i<Helper.size();i++)
+        {
+            
+            if(Helper[i]<x)
+            {
+                temp1->val=Helper[i];
+                temp1=temp1->next;
+                nose++;
+            }
+         
+            
+        }
+       
+        for(int i=0;i<Helper.size();i++)
+        {
+            if(Helper[i]>=x)
+            {
+                cout<<temp1->val;
+                temp1->val=Helper[i];
+                temp1=temp1->next;
+            }
+
+            
+        }
+        return head;
+        
+    }
+};
